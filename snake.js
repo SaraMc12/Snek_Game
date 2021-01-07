@@ -1,3 +1,5 @@
+import { getSnakePosition } from "./movement";
+
 export const snakeSpeed = 2;
 
 const snakeBody = [
@@ -10,12 +12,13 @@ let newSegments = 0;
 
 // update snake segments or child elements to follow the movements of the parent element or the head of the snake
 export function update() {
+  const snakePosition = getSnakePosition();
   for (let i = snakeBody.length - 2; i >= 0; i--) {
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
   //   update the movement of snakes head
-  snakeBody[0].x += 0;
-  snakeBody[0].y += 1;
+  snakeBody[0].x += snakePosition.x;
+  snakeBody[0].y += snakePosition.y;
 }
 
 export function draw(gameBoard) {
